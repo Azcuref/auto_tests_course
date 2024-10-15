@@ -1,0 +1,25 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+import math
+
+browser = webdriver.Chrome()
+link = "http://suninjuly.github.io/alert_accept.html"
+
+try:
+    browser.get(link)
+    button_1 = browser.find_element(By.CSS_SELECTOR, 'button[type = "submit"]')
+    button_1.click()
+    confirm1 = browser.switch_to.alert
+    confirm1.accept()
+    x = int((browser.find_element(By.ID, "input_value")).text)
+    formula = math.log(abs(12 * math.sin(x)))
+    input_1 = browser.find_element(By.ID, "answer")
+    input_1.send_keys(formula)
+    button_1 = browser.find_element(By.CSS_SELECTOR, 'button[type = "submit"]')
+    button_1.click()
+
+
+finally:
+    time.sleep(5)
+    browser.quit()
